@@ -25,6 +25,9 @@ jobs:
     - name: Run rspec
       run: gem install bundler; bundle install; rspec
 
+    - name: Copy coverage file
+      run: cp coverage/lcov/code_coverage_test.lcov coverage/lcov.info
+
     - name: After build
       run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter after-build -t lcov
       env:
