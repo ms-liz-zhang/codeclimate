@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get install -y libsqlite3-dev
 
     - name: Before build
-      run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF code-climate-test-reporter before-build
+      run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter before-build
       env:
         CC_TEST_REPORTER_ID: caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
 
@@ -26,6 +26,6 @@ jobs:
       run: gem install bundler; bundle install; rspec
 
     - name: After build
-      run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF code-climate-test-reporter after-build -p coverage/lcov/code_coverage_test.lcov -t lcov
+      run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter after-build -p coverage/lcov/code_coverage_test.lcov -t lcov
       env:
         CC_TEST_REPORTER_ID: caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
