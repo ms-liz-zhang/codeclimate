@@ -20,7 +20,7 @@ jobs:
     - name: Before build
       run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter before-build
       env:
-        CC_TEST_REPORTER_ID: caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
+        CC_TEST_REPORTER_ID: 5caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
 
     - name: Run rspec
       run: gem install bundler; bundle install; rspec
@@ -31,5 +31,4 @@ jobs:
     - name: After build
       run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter after-build -t lcov
       env:
-        CC_TEST_REPORTER_ID: caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
-        COVERAGE_FILE: coverage/lcov/code_coverage_test.lcov
+        CC_TEST_REPORTER_ID: 5caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
