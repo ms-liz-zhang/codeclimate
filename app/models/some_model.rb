@@ -19,7 +19,9 @@ class SomeModel < ApplicationRecord
     return false
   end
 
-  def asdfasdffqwe
-    return false
+  def asdfasdffqwe(param)
+    ActiveRecord::Base.connection.execute("update table set name=#{param}")
+
+    return
   end
 end
