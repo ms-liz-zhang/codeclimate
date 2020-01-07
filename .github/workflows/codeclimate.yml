@@ -1,0 +1,34 @@
+name: Code Climate
+
+on: ["push", "pull_request"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Setup SQL lite 3
+      run: sudo apt-get install -y libsqlite3-dev
+
+    - name: Before build
+      run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter before-build
+      env:
+        CC_TEST_REPORTER_ID: 5caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
+
+    - name: Run rspec
+      run: gem install bundler; bundle install; rspec
+
+    - name: Copy coverage file
+      run: cp coverage/lcov/code_coverage_test.lcov coverage/lcov.info
+
+    - name: After build
+      run: GIT_COMMIT_SHA=$GITHUB_SHA GIT_BRANCH=$GITHUB_REF ./code-climate-test-reporter after-build -t lcov
+      env:
+        CC_TEST_REPORTER_ID: 5caafd82004a0c8fe64623a3d5147d1df1614a696490094782ff077d9cd96787
