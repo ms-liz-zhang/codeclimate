@@ -18,4 +18,10 @@ class SomeModel < ApplicationRecord
   def asdfasdf
     return false
   end
+
+  def asdfasdffqwe(params)
+    User.first(:conditions => "username = '#{params[:username]}'")
+
+    return
+  end
 end
