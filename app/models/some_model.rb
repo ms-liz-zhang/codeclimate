@@ -18,4 +18,8 @@ class SomeModel < ApplicationRecord
   def asdfasdf
     return false
   end
+
+  def asdfasdffqwe
+    return false
+  end
 end
