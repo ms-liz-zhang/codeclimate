@@ -19,8 +19,8 @@ class SomeModel < ApplicationRecord
     return false
   end
 
-  def asdfasdffqwe(param)
-    ActiveRecord::Base.connection.execute("update table set name=#{param}")
+  def asdfasdffqwe(params)
+    User.first(:conditions => "username = '#{params[:username]}'")
 
     return
   end
